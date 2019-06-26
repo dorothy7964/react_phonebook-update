@@ -8,6 +8,7 @@ class ConteactDetails extends Component {
       phone: '전화번호',
     },
     onRemove: () => console.warn('onRemove not defined'),
+    onEdit: () => console.warn('onEdit not defined'),
   }
 
   state = {
@@ -23,7 +24,8 @@ class ConteactDetails extends Component {
         phone : this.props.contact.phone,
       });
     }else {
-      alert('전송');
+      const { name, phone } = this.state;
+      this.props.onEdit(name, phone);
     }
     this.setState({
       isEdit : !this.state.isEdit
