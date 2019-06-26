@@ -87,6 +87,7 @@ class Contacts extends Component {
 				<div>{mapToComponents(contactData)}</div>
 
 				<ConteactDetails
+					isSelected={selecteKey !== -1}
 					contact={contactData[selecteKey]}
 					onRemove={this.handleRemove}
 				/>

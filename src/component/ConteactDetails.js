@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class ConteactDetails extends Component {
   static defaultProps = {
+    isSelected : false,
     contact : {
       name: '이름',
       phone: '전화번호',
@@ -21,12 +22,19 @@ class ConteactDetails extends Component {
 
   render() {
     const { isEdit } = this.state;
-    const { contact, onRemove } = this.props;
+    const { isSelected, contact, onRemove } = this.props;
+    const blank = '클릭하세요.';
+    const details = (
+      <div>
+        <div>{contact.name}</div>
+        <div>{contact.phone}</div>
+      </div>
+    );
+    const view = isSelected? details : blank;
     return(
       <div>
         <h1>ConteactDetails</h1>
-        <div>{contact.name}</div>
-        <div>{contact.phone}</div>
+        <div>{view}</div>
         <button onClick={this.handleToggle}>{isEdit? 'OK':'Edit'}</button>
         <button onClick={onRemove}>Remove</button>
       </div>
