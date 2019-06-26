@@ -5,18 +5,19 @@ class ConteactDetails extends Component {
     contact : {
       name: '이름',
       phone: '전화번호',
-    }
+    },
+    onRemove: () => console.warn('onRemove not defined'),
   }
 
   render() {
-    const { contact } = this.props;
+    const { contact, onRemove } = this.props;
     return(
       <div>
         <h1>ConteactDetails</h1>
         <div>{contact.name}</div>
         <div>{contact.phone}</div>
         <button>Edit</button>
-        <button>Remove</button>
+        <button onClick={onRemove}>Remove</button>
       </div>
     );
   }

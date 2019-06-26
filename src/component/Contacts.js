@@ -37,10 +37,21 @@ class Contacts extends Component {
 		console.log(key);
 	}
 
-	/* react-addons-update 사용 : $push */
+	/* react-addons-update 사용 : $push, $splice */
 	handleCreate = (contact) =>{
 		this.setState({
 			contactData  : update(this.state.contactData, { $push : [contact] }),
+		});
+	}
+
+	handleRemove = () => {
+		this.setState({
+			contactData : update(this.state.contactData,
+				{
+					$splice : [[ this.state.selecteKey, 1 ]]
+				}
+			),
+			selecteKey : -1,
 		});
 	}
 
@@ -77,6 +88,7 @@ class Contacts extends Component {
 
 				<ConteactDetails
 					contact={contactData[selecteKey]}
+					onRemove={this.handleRemove}
 				/>
 
 				<ContactCreate
