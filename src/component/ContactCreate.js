@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class ContactCreate extends Component {
+  static defaultProps = {
+    onCreate: () => console.warn('onCreate not defined'),
+  }
+
   state = {
     name : '',
     phone : '',
@@ -10,6 +14,19 @@ class ContactCreate extends Component {
     const nextState = {};
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
+  }
+
+  handleClick = () => {
+    const contact = {
+      name : this.state.name,
+      phone : this.state.phone
+    };
+    this.props.onCreate(contact);
+    this.setState({
+      name : '',
+      phone : ''
+    });
+    this.nameInput.focus();
   }
 
   render() {
@@ -24,6 +41,7 @@ class ContactCreate extends Component {
             placeholder="name"
             value={name}
             onChange={this.handleChange}
+            ref={(ref) => {this.nameInput = ref}}
           />
           <input
             type="text"
@@ -33,7 +51,7 @@ class ContactCreate extends Component {
             onChange={this.handleChange}
           />
         </p>
-        <button>Create</button>
+        <button onClick={this.handleClick}>Create</button>
       </div>
     );
   }

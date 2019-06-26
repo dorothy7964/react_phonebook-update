@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import update from 'react-addons-update';
+
 import ContactInfo from './ContactInfo';
 import ConteactDetails from './ConteactDetails';
 import ContactCreate from'./ContactCreate';
@@ -33,6 +35,13 @@ class Contacts extends Component {
 			selecteKey : key
 		});
 		console.log(key);
+	}
+
+	/* react-addons-update 사용 : $push */
+	handleCreate = (contact) =>{
+		this.setState({
+			contactData  : update(this.state.contactData, { $push : [contact] }),
+		});
 	}
 
   render() {
@@ -70,7 +79,9 @@ class Contacts extends Component {
 					contact={contactData[selecteKey]}
 				/>
 
-				<ContactCreate />
+				<ContactCreate
+					onCreate={this.handleCreate}
+				/>
 			</div>
     );
   }
