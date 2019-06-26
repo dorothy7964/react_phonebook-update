@@ -45,6 +45,9 @@ class Contacts extends Component {
 	}
 
 	handleRemove = () => {
+		if(this.state.selecteKey < 0){
+			return;
+		}
 		this.setState({
 			contactData : update(this.state.contactData,
 				{
