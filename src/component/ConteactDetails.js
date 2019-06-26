@@ -12,12 +12,20 @@ class ConteactDetails extends Component {
 
   state = {
     isEdit : false,
+    name : '',
+    phone : '',
   }
 
   handleToggle = () => {
     this.setState({
       isEdit : !this.state.isEdit
     });
+  }
+
+  handleChange = (e) => {
+    const nextState ={};
+    nextState[e.target.name] = e.target.value;
+    this.setState(nextState);
   }
 
   render() {
@@ -37,6 +45,8 @@ class ConteactDetails extends Component {
             type="text"
             name="name"
             placeholder="name"
+            value={this.state.name}
+            onChange={this.handleChange}
           />
         </p>
         <p>
@@ -44,6 +54,8 @@ class ConteactDetails extends Component {
             type="text"
             name="phone"
             placeholder="phone"
+            value={this.state.phone}
+            onChange={this.handleChange}
           />
         </p>
       </div>
