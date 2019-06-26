@@ -4,12 +4,14 @@ class ConteactDetails extends Component {
   static defaultProps = {
     selecteKey : -1,
     isSelected : false,
+    buttonMessage : '',
     contact : {
       name: '이름',
       phone: '전화번호',
     },
     onRemove: () => console.warn('onRemove not defined'),
     onEdit: () => console.warn('onEdit not defined'),
+    editMessage: () => console.warn('editMessage not defined'),
   }
 
   state = {
@@ -20,7 +22,7 @@ class ConteactDetails extends Component {
 
   handleToggle = () => {
     if(this.props.selecteKey < 0) {
-      return;
+      return this.props.editMessage('(Edit button)');
     }
 
     if(!this.state.isEdit){
@@ -55,8 +57,8 @@ class ConteactDetails extends Component {
 
   render() {
     const { isEdit } = this.state;
-    const { isSelected, contact, onRemove } = this.props;
-    const blank = '클릭하세요.';
+    const { isSelected, buttonMessage, contact, onRemove } = this.props;
+    const blank = `${buttonMessage} 클릭하세요.`;
     const details = (
       <div>
         <div>{contact.name}</div>

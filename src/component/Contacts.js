@@ -9,6 +9,7 @@ class Contacts extends Component {
 	state = {
 		keyword : '',
 		selecteKey : -1,
+		buttonMessage : '',
 		contactData : [{
 			name : 'Abet',
 			phone : '010-0000-0001'
@@ -46,7 +47,11 @@ class Contacts extends Component {
 
 	handleRemove = () => {
 		if(this.state.selecteKey < 0){
-			return;
+			return (
+				this.setState({
+					buttonMessage : '(Remove button)'
+				})
+			);
 		}
 		this.setState({
 			contactData : update(this.state.contactData,
@@ -71,6 +76,12 @@ class Contacts extends Component {
 		});
 	}
 
+	editMessage = (text) => {
+		this.setState({
+			buttonMessage : text
+		});
+	}
+
   render() {
 		const mapToComponents = (data) => {
 			data.sort((a,b) => {
@@ -91,7 +102,7 @@ class Contacts extends Component {
 			));
 		};
 
-		const { contactData, selecteKey } = this.state;
+		const { contactData, selecteKey, buttonMessage } = this.state;
     return(
       <div className="Contacts">
 				<h1>Contacts</h1>
@@ -106,8 +117,10 @@ class Contacts extends Component {
 					selecteKey={selecteKey}
 					isSelected={selecteKey !== -1}
 					contact={contactData[selecteKey]}
+					buttonMessage={buttonMessage}
 					onRemove={this.handleRemove}
 					onEdit={this.handleEdit}
+					editMessage={this.editMessage}
 				/>
 
 				<ContactCreate
