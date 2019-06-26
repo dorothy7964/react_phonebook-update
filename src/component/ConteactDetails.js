@@ -42,6 +42,12 @@ class ConteactDetails extends Component {
     this.props.onEdit(name, phone);
   }
 
+  handleKeyPress = (e) => {
+		if(e.charCode === 13){
+			this.handleToggle();
+		}
+  }
+
   render() {
     const { isEdit } = this.state;
     const { isSelected, contact, onRemove } = this.props;
@@ -70,6 +76,7 @@ class ConteactDetails extends Component {
             placeholder="phone"
             value={this.state.phone}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
         </p>
       </div>
