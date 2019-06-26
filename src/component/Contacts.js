@@ -21,11 +21,23 @@ class Contacts extends Component {
 		}]
 	}
 
+	handleChange = (e) => {
+		this.setState({
+			keyword : e.target.value
+		});
+	}
+
   render() {
 		const mapToComponents = (data) => {
 			data.sort((a,b) => {
 				return a.name < b.name ? -1 : 1;
 			});
+			data = data.filter(
+				(contact) => {
+					return contact.name.toLowerCase()
+					.indexOf(this.state.keyword.toLowerCase()) > -1;
+				}
+			)
 			return data.map((value,index) => (
 				<ContactInfo
 					key={index}
@@ -41,6 +53,7 @@ class Contacts extends Component {
 				<input
 					name="keyword"
 					placeholder="Search"
+					onChange={this.handleChange}
 				/>
 				<div>{mapToComponents(contactData)}</div>
 
