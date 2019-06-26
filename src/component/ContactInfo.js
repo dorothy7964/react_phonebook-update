@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ContactInfo = ({ value }) => {
+const ContactInfo = ({ value, onClick }) => {
   return (
-    <div>{value.name}</div>
+    <div onClick={onClick}>{value.name}</div>
   )
 }
 

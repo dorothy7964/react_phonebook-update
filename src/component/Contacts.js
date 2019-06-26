@@ -6,6 +6,7 @@ import ContactCreate from'./ContactCreate';
 class Contacts extends Component {
 	state = {
 		keyword : '',
+		selecteKey : -1,
 		contactData : [{
 			name : 'Abet',
 			phone : '010-0000-0001'
@@ -27,6 +28,13 @@ class Contacts extends Component {
 		});
 	}
 
+	handleClick = (key) => {
+		this.setState({
+			selecteKey : key
+		});
+		console.log(key);
+	}
+
   render() {
 		const mapToComponents = (data) => {
 			data.sort((a,b) => {
@@ -42,6 +50,7 @@ class Contacts extends Component {
 				<ContactInfo
 					key={index}
 					value={value}
+					onClick={()=>this.handleClick(index)}
 				/>
 			));
 		};
@@ -57,7 +66,8 @@ class Contacts extends Component {
 				/>
 				<div>{mapToComponents(contactData)}</div>
 
-				<ConteactDetails />
+				<ConteactDetails
+				/>
 
 				<ContactCreate />
 			</div>
