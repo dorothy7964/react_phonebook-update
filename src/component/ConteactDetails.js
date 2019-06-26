@@ -30,7 +30,26 @@ class ConteactDetails extends Component {
         <div>{contact.phone}</div>
       </div>
     );
-    const view = isSelected? details : blank;
+    const inputEdit = (
+      <div>
+        <p>
+          <input
+            type="text"
+            name="name"
+            placeholder="name"
+          />
+        </p>
+        <p>
+          <input
+            type="text"
+            name="phone"
+            placeholder="phone"
+          />
+        </p>
+      </div>
+    );
+    const edit = isEdit? inputEdit : details;
+    const view = isSelected? edit : blank;
     return(
       <div>
         <h1>ConteactDetails</h1>
