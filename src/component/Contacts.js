@@ -7,6 +7,7 @@ import ContactCreate from'./ContactCreate';
 
 class Contacts extends Component {
 	state = {
+		nextId: 4,
 		keyword : '',
 		selecteKey : -1,
 		buttonMessage : '',
@@ -42,6 +43,7 @@ class Contacts extends Component {
 	handleCreate = (contact) =>{
 		this.setState({
 			contactData  : update(this.state.contactData, { $push : [contact] }),
+			nextId : this.state.nextId + 1
 		});
 	}
 
@@ -60,6 +62,7 @@ class Contacts extends Component {
 				}
 			),
 			selecteKey : -1,
+			nextId : this.state.nextId - 1
 		});
 	}
 
@@ -102,7 +105,7 @@ class Contacts extends Component {
 			));
 		};
 
-		const { contactData, selecteKey, buttonMessage } = this.state;
+		const { nextId, contactData, selecteKey, buttonMessage } = this.state;
     return(
       <div className="Contacts">
 				<h1>Contacts</h1>
@@ -111,6 +114,7 @@ class Contacts extends Component {
 					placeholder="Search"
 					onChange={this.handleChange}
 				/>
+				<div>총 갯수 : {nextId}</div>
 				<div>{mapToComponents(contactData)}</div>
 
 				<ConteactDetails
