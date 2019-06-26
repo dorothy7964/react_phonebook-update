@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContactInfo from './ContactInfo';
 import ConteactDetails from './ConteactDetails';
 import ContactCreate from'./ContactCreate';
 
@@ -21,6 +22,16 @@ class Contacts extends Component {
 	}
 
   render() {
+		const mapToComponents = (data) => {
+			return data.map((value,index) => (
+				<ContactInfo
+					key={index}
+					value={value}
+				/>
+			));
+		};
+
+		const { contactData } = this.state;
     return(
       <div className="Contacts">
 				<h1>Contacts</h1>
@@ -28,6 +39,7 @@ class Contacts extends Component {
 					name="keyword"
 					placeholder="Search"
 				/>
+				<div>{mapToComponents(contactData)}</div>
 
 				<ConteactDetails />
 
