@@ -55,7 +55,7 @@ class Contacts extends Component {
 			));
 		};
 
-		const { contactData } = this.state;
+		const { contactData, selecteKey } = this.state;
     return(
       <div className="Contacts">
 				<h1>Contacts</h1>
@@ -67,6 +67,7 @@ class Contacts extends Component {
 				<div>{mapToComponents(contactData)}</div>
 
 				<ConteactDetails
+					contact={contactData[selecteKey]}
 				/>
 
 				<ContactCreate />
