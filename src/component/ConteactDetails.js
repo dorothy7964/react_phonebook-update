@@ -24,8 +24,7 @@ class ConteactDetails extends Component {
         phone : this.props.contact.phone,
       });
     }else {
-      const { name, phone } = this.state;
-      this.props.onEdit(name, phone);
+      this.handleEdit();
     }
     this.setState({
       isEdit : !this.state.isEdit
@@ -36,6 +35,11 @@ class ConteactDetails extends Component {
     const nextState ={};
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
+  }
+
+  handleEdit = () => {
+    const { name, phone } = this.state;
+    this.props.onEdit(name, phone);
   }
 
   render() {
