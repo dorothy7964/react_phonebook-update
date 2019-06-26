@@ -17,6 +17,14 @@ class ConteactDetails extends Component {
   }
 
   handleToggle = () => {
+    if(!this.state.isEdit){
+      this.setState({
+        name : this.props.contact.name,
+        phone : this.props.contact.phone,
+      });
+    }else {
+      alert('전송');
+    }
     this.setState({
       isEdit : !this.state.isEdit
     });
