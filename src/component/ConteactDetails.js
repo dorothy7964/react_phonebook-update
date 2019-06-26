@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class ConteactDetails extends Component {
   static defaultProps = {
+    selecteKey : -1,
     isSelected : false,
     contact : {
       name: '이름',
@@ -18,6 +19,10 @@ class ConteactDetails extends Component {
   }
 
   handleToggle = () => {
+    if(this.props.selecteKey < 0) {
+      return;
+    }
+
     if(!this.state.isEdit){
       this.setState({
         name : this.props.contact.name,
