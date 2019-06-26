@@ -23,6 +23,9 @@ class Contacts extends Component {
 
   render() {
 		const mapToComponents = (data) => {
+			data.sort((a,b) => {
+				return a.name < b.name ? -1 : 1;
+			});
 			return data.map((value,index) => (
 				<ContactInfo
 					key={index}
